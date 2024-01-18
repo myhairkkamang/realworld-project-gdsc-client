@@ -1,7 +1,7 @@
 "use client";
 
+import AuthErrors from "@/components/auth-error";
 import { useState } from "react";
-// import AuthErrors from "./layout";
 
 export default function Signup() {
   const [errors, setErrors] = useState<{ [key: string]: string[] }>({});
@@ -17,7 +17,7 @@ export default function Signup() {
               <a href="/login">Have an account?</a>
             </p>
 
-            {/* <AuthErrors /> */}
+            <AuthErrors errors={errors} />
 
             <form>
               <fieldset className="form-group">

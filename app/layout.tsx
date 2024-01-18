@@ -1,3 +1,5 @@
+import "../stylesheets/demo.productionready.io.main.css";
+
 export default function RootLayout({
   children,
 }: {
