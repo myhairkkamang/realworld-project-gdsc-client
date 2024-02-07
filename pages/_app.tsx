@@ -3,7 +3,7 @@ import Header from "../components/header/header";
 import type { AppProps } from "next/app";
 import Footer from "@/components/footer/footer";
 
-const defaultLayout = ({ Component, pageProps }: AppProps) => {
+const default_Layout = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Header />
@@ -13,4 +13,4 @@ const defaultLayout = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export default defaultLayout;
+export default default_Layout;
