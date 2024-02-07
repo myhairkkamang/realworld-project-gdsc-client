@@ -3,7 +3,7 @@ import Header from "../components/header/header";
 import type { AppProps } from "next/app";
 import Footer from "@/components/footer/footer";
 
-const realWorld_Header = ({ Component, pageProps }: AppProps) => {
+const defaultLayout = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Header />
@@ -13,4 +13,4 @@ const realWorld_Header = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export default realWorld_Header;
+export default defaultLayout;
