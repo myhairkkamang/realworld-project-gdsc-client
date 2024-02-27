@@ -2,47 +2,55 @@ import Markup from "@/components/article/article-markup";
 import TagList from "@/components/article/tag-list";
 import { getArticle } from "@/services/article/article.service";
 import Link from "next/link";
-import router from "next/router";
+import { NextRouter, useRouter } from "next/router";
+import Image from "next/image";
+import { useState } from "react";
+import CommentList from "@/components/article/comment";
 
-export default async function articlePage() {
-  const article = getArticle(router.query.slug);
+export default async function ArticlePage() {
+  const router: NextRouter = useRouter();
+  const slug = router.query.slug ?? "";
+  const article = await getArticle(slug[0]);
 
   return (
-    <div className="article-page">
-      <div className="banner">
-        <div className="container">
-          <h1>{article.title}</h1>
+    <>
+      <div className="article-page">
+        <div className="banner">
+          <div className="container">
+            <h1>{article.title}</h1>
 
-          <div className="article-meta">
-            <Link href={"/profile/" + article.author.username}>
-              <img src={article.author.image} alt="author avatar" />
-            </Link>
-            <div className="info">
-              <Link
-                href={"/profile/" + article.author.username}
-                className="author"
-              >
-                {article.author.username}
+            <div className="article-meta">
+              <Link href={"/profile/" + article.author.username}>
+                <Image src={article.author.image} alt="author avatar" />
               </Link>
-              <time dateTime={article.createdAt} />
+              <div className="info">
+                <Link
+                  href={"/profile/" + article.author.username}
+                  className="author"
+                >
+                  {article.author.username}
+                </Link>
+                <time dateTime={article.createdAt} />
+              </div>
+              {/* article action component */}
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="container page">
-        <div className="row article-content">
-          <div className="col-xs-12">
-            <p>{article.description}</p>
-            <Markup content={article.body} />
-            <TagList tags={article.tagList} />
+        <div className="container page">
+          <div className="row article-content">
+            <div className="col-xs-12">
+              <p>{article.description}</p>
+              <Markup content={article.body} />
+              <TagList tags={article.tagList} />
+            </div>
           </div>
+
+          <hr />
+
+          <CommentList slug={article} />
         </div>
-
-        <hr />
-
-        {/* <CommentList slug={router.query.slug} /> */}
       </div>
-    </div>
+    </>
   );
 }
