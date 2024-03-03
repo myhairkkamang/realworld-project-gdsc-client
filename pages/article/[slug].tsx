@@ -4,33 +4,46 @@ import { getArticle } from "@/services/article/article.service";
 import Link from "next/link";
 import { NextRouter, useRouter } from "next/router";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CommentList from "@/components/article/comment";
+import { Article } from "@/models/article.model";
 
-export default async function ArticlePage() {
+type Params = {
+  slug: string;
+};
+
+export default function ArticlePage() {
   const router: NextRouter = useRouter();
-  const slug = router.query.slug ?? "";
-  const article = await getArticle(slug[0]);
+  const { slug } = router.query as Params;
+  const [article, setArticle] = useState<Article>();
+
+  useEffect(() => {
+    async function fetchArticle() {
+      setArticle(await getArticle(slug));
+    }
+
+    fetchArticle();
+  }, [article, slug]);
 
   return (
     <>
       <div className="article-page">
         <div className="banner">
           <div className="container">
-            <h1>{article.title}</h1>
+            <h1>{article!.title}</h1>
 
             <div className="article-meta">
-              <Link href={"/profile/" + article.author.username}>
-                <Image src={article.author.image} alt="author avatar" />
+              <Link href={"/profile/" + article!.author.username}>
+                <Image src={article!.author.image} alt="author avatar" />
               </Link>
               <div className="info">
                 <Link
-                  href={"/profile/" + article.author.username}
+                  href={"/profile/" + article!.author.username}
                   className="author"
                 >
-                  {article.author.username}
+                  {article!.author.username}
                 </Link>
-                <time dateTime={article.createdAt} />
+                <time dateTime={article!.createdAt} />
               </div>
               {/* article action component */}
             </div>
@@ -40,15 +53,15 @@ export default async function ArticlePage() {
         <div className="container page">
           <div className="row article-content">
             <div className="col-xs-12">
-              <p>{article.description}</p>
-              <Markup content={article.body} />
-              <TagList tags={article.tagList} />
+              <p>{article!.description}</p>
+              <Markup content={article!.body} />
+              <TagList tags={article!.tagList} />
             </div>
           </div>
 
           <hr />
 
-          <CommentList slug={article} />
+          <CommentList slug={slug} />
         </div>
       </div>
     </>
