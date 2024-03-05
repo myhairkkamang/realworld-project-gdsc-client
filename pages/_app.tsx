@@ -10,7 +10,7 @@ import React, {
 } from "react";
 import AuthProvider, { AuthContext } from "@/context/auth.context";
 
-const realWorld_Header = ({ Component, pageProps }: AppProps) => {
+const Layout = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <AuthProvider>
@@ -22,4 +22,4 @@ const realWorld_Header = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export default realWorld_Header;
+export default Layout;
