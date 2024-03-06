@@ -10,9 +10,9 @@ const HomeArticleMeta = () => {
           <Image src="http://i.imgur.com/Qr71crq.jpg" alt="" />
         </Link>
         <div className="info">
-          <a href="/profile/eric-simons" className="author">
+          <Link href="/profile/eric-simons" className="author">
             Eric Simons
-          </a>
+          </Link>
           <span className="date">January 20th</span>
         </div>
         <button className="btn btn-outline-primary btn-sm pull-xs-right">

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import HomeArticleMeta from "./home-articleMeta";
 
 const HomeArticlePreview = () => {
@@ -5,7 +6,7 @@ const HomeArticlePreview = () => {
     <>
       <div className="article-preview">
         <HomeArticleMeta />
-        <a
+        <Link
           href="/article/how-to-build-webapps-that-scale"
           className="preview-link"
         >
@@ -18,7 +19,7 @@ const HomeArticlePreview = () => {
               implementations
             </li>
           </ul>
-        </a>
+        </Link>
       </div>
     </>
   );
