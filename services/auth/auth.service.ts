@@ -20,3 +20,11 @@ export async function getCurrentUser(): Promise<User> {
     .then((res) => res.json())
     .then((res) => res.user);
 }
+
+export async function updateUser(user: unknown) {
+  return fetch("https://realword-gdsc.onrender.com/users", {
+    method: "PUT",
+    headers: getHeader(),
+    body: JSON.stringify({ user }),
+  });
+}
