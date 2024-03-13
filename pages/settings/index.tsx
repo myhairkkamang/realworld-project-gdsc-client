@@ -1,8 +1,9 @@
 import { AuthContext } from "@/context/auth.context";
+import { User } from "@/models/user.model";
 import { updateUser } from "@/services/auth/auth.service";
 import { clearToken } from "@/utils/token.utils";
 import { NextRouter, useRouter } from "next/router";
-import { useContext } from "react";
+import { SetStateAction, useContext, useEffect } from "react";
 
 export default function SettingsPage() {
   const router: NextRouter = useRouter();
@@ -20,10 +21,11 @@ export default function SettingsPage() {
     };
 
     const response = await updateUser(credentials);
-    
-    if(response.ok) {
-        const data = await response.json();
-        //set QueryData
+
+    if (response.ok) {
+      const data = await response.json();
+      setUser(data.user);
+      router.reload();
     }
   };
 
