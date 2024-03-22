@@ -3,7 +3,7 @@ import getHeader from "@/utils/headers.utils";
 
 export async function getArticle(slug: string): Promise<Article> {
   //write down API URL
-  const url: string = `https://realworld-gdsc.onrender.com/articles/${slug}`;
+  const url: string = `${process.env.API_ENDPOINT}/articles/${slug}`;
   return fetch(url, {
     headers: getHeader(),
   })
@@ -12,7 +12,7 @@ export async function getArticle(slug: string): Promise<Article> {
 }
 
 export async function deleteArticle(slug: string): Promise<Response> {
-  return fetch(`https://realworld-gdsc.onrender.com/articles/${slug}`, {
+  return fetch(`${process.env.API_ENDPOINT}/articles/${slug}`, {
     method: "DELETE",
     headers: getHeader(),
   });
@@ -20,7 +20,7 @@ export async function deleteArticle(slug: string): Promise<Response> {
 
 export async function favoriteArticle(slug: string): Promise<Article> {
   return fetch(
-    `https://realworld-gdsc.onrender.com/articles/${slug}/favorite`,
+    `${process.env.API_ENDPOINT}/articles/${slug}/favorite`,
     {
       method: "POST",
       headers: getHeader(),
@@ -32,7 +32,7 @@ export async function favoriteArticle(slug: string): Promise<Article> {
 
 export async function unfavoriteArticle(slug: string): Promise<Article> {
   return fetch(
-    `https://realworld-gdsc.onrender.com/articles/${slug}/favorite`,
+    `${process.env.API_ENDPOINT}/articles/${slug}/favorite`,
     {
       method: "DELETE",
       headers: getHeader(),

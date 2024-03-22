@@ -4,7 +4,7 @@ import getHeader from "@/utils/headers.utils";
 
 export async function register(credential: RegisterCredential) {
   //CORS problem cause
-  return fetch(`https://realworld-gdsc.onrender.com/users`, {
+  return fetch(`${process.env.API_ENDPOINT}/users`, {
     method: "POST",
     headers: getHeader(),
     body: JSON.stringify({ user: credential }),
@@ -13,7 +13,7 @@ export async function register(credential: RegisterCredential) {
 
 export async function getCurrentUser(): Promise<User> {
   //write URL
-  return fetch(`https://realworld-gdsc.onrender.com/users`, {
+  return fetch(`${process.env.API_ENDPOINT}/users`, {
     method: "GET",
     headers: getHeader(),
   })
