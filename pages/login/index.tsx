@@ -3,10 +3,12 @@ import LoginCredential from "@/models/login.model";
 import { login } from "@/services/login/login.service";
 import { useState } from "react";
 import Link from "next/link";
+import { setToken } from "@/utils/token.utils";
+import router from "next/router";
 
 export default function Signin() {
   const [errors, setErrors] = useState<{ [key: string]: string[] }>({});
- 
+
   async function submit(events: React.FormEvent<HTMLFormElement>) {
     events.preventDefault();
 
@@ -21,7 +23,10 @@ export default function Signin() {
     if (!response.ok) {
       setErrors(data.errors);
     } else {
-      //set user credential
+      setUser(data.user);
+      setToken(data.user.token);
+      router.push("/");
+      console.log("login sucessful!");
     }
   }
 
@@ -40,12 +45,22 @@ export default function Signin() {
 
               <form>
                 <fieldset className="form-group">
-                  <input className="form-control form-control-lg" type="text" placeholder="Email" />
+                  <input
+                    className="form-control form-control-lg"
+                    type="text"
+                    placeholder="Email"
+                  />
                 </fieldset>
                 <fieldset className="form-group">
-                  <input className="form-control form-control-lg" type="password" placeholder="Password" />
+                  <input
+                    className="form-control form-control-lg"
+                    type="password"
+                    placeholder="Password"
+                  />
                 </fieldset>
-                <button className="btn btn-lg btn-primary pull-xs-right">Sign in</button>
+                <button className="btn btn-lg btn-primary pull-xs-right">
+                  Sign in
+                </button>
               </form>
             </div>
           </div>
@@ -53,4 +68,7 @@ export default function Signin() {
       </div>
     </>
   );
+}
+function setUser(user: any) {
+  throw new Error("Function not implemented.");
 }
