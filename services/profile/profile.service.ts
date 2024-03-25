@@ -2,7 +2,7 @@ import { Author } from "@/models/author.model";
 import getHeader from "@/utils/headers.utils";
 
 export async function followUser(username: string): Promise<Author> {
-  return fetch(`${process.env.VITE_API_ENDPOINT}/${username}/follow`, {
+  return fetch(`${process.env.API_ENDPOINT}/${username}/follow`, {
     method: "POST",
     headers: getHeader(),
   })
@@ -11,10 +11,10 @@ export async function followUser(username: string): Promise<Author> {
 }
 
 export async function unfollowUser(username: string): Promise<Author> {
-    return fetch(`${process.env.VITE_API_ENDPOINT}/${username}/follow`, {
-      method: "DELETE",
-      headers: getHeader(),
-    })
-      .then((res) => res.json())
-      .then((res) => res.profile);
-  }
+  return fetch(`${process.env.API_ENDPOINT}/${username}/follow`, {
+    method: "DELETE",
+    headers: getHeader(),
+  })
+    .then((res) => res.json())
+    .then((res) => res.profile);
+}
