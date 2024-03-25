@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import CommentList from "@/components/article/comment";
 import { Article } from "@/models/article.model";
+import ArticleActions from "@/components/article/article-actions";
 
 type Params = {
   slug: string;
@@ -45,7 +46,7 @@ export default function ArticlePage() {
                 </Link>
                 <time dateTime={article!.createdAt} />
               </div>
-              {/* article action component */}
+              <ArticleActions article={article!} />
             </div>
           </div>
         </div>
