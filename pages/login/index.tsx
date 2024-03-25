@@ -25,8 +25,9 @@ export default function Signin() {
     } else {
       setUser(data.user);
       setToken(data.user.token);
-      router.push("/");
       console.log("login sucessful!");
+      console.log(data.user);
+      router.push("/");
     }
   }
 
