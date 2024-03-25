@@ -2,7 +2,7 @@ import { Comment } from "@/models/comment.model";
 import getHeader from "@/utils/headers.utils";
 
 export async function getComments(slug: string): Promise<Comment[]> {
-  return fetch(`${process.env.API_ENDPOINT}/articles/${slug}/comments`, {
+  return fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/articles/${slug}/comments`, {
     headers: getHeader(),
   })
     .then((res) => res.json())
@@ -13,7 +13,7 @@ export async function createComment(
   slug: string,
   body: string
 ): Promise<Comment> {
-  return fetch(`${process.env.API_ENDPOINT}/articles/${slug}/comments`, {
+  return fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/articles/${slug}/comments`, {
     method: "POST",
     headers: getHeader(),
     body: JSON.stringify({
@@ -30,7 +30,7 @@ export async function deleteComment(
   slug: string,
   id: number
 ): Promise<Response> {
-  return fetch(`${process.env.API_ENDPOINT}/articles/${slug}/comments/${id}`, {
+  return fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/articles/${slug}/comments/${id}`, {
     method: "DELETE",
     headers: getHeader(),
   });

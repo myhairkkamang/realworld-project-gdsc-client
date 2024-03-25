@@ -1,7 +1,11 @@
+import { getToken } from "./token.utils";
+
 const getHeader = () => {
-    return {
-        'Content-Type': 'application/json'
-    };
+  const token = getToken();
+  return {
+    "Content-Type": "application/json",
+    ...(token ? { Authorization: `Token ${token}` } : {}),
+  };
 };
 
 export default getHeader;

@@ -4,7 +4,7 @@ import getHeader from "@/utils/headers.utils";
 
 export async function register(credential: RegisterCredential) {
   //CORS problem cause
-  return fetch(`${process.env.API_ENDPOINT}/users`, {
+  return fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/users`, {
     method: "POST",
     headers: getHeader(),
     body: JSON.stringify({ user: credential }),
@@ -13,7 +13,7 @@ export async function register(credential: RegisterCredential) {
 
 export async function getCurrentUser(): Promise<User> {
   //write URL
-  return fetch(`${process.env.API_ENDPOINT}/users`, {
+  return fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/users`, {
     method: "GET",
     headers: getHeader(),
   })
@@ -22,7 +22,7 @@ export async function getCurrentUser(): Promise<User> {
 }
 
 export async function updateUser(user: unknown) {
-  return fetch("https://realword-gdsc.onrender.com/users", {
+  return fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/users`, {
     method: "PUT",
     headers: getHeader(),
     body: JSON.stringify({ user }),
